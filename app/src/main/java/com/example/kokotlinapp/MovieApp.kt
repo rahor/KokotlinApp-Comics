@@ -1,6 +1,7 @@
 package com.example.kokotlinapp
 
 import android.app.Application
+import android.util.Log
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 
@@ -12,7 +13,6 @@ class MoviesApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         requetQueue = Volley.newRequestQueue(this)
     }
 }
