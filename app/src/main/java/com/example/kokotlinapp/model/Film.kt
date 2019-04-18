@@ -14,7 +14,17 @@ class Film() : Parcelable {
     @JsonProperty(value = "image")
     var afficheURL: String? = null
 
-    lateinit var description: String
+    @JsonProperty(value = "description")
+    var description: String? = null
+
+    constructor(titre: String, description: String, affiche: String) : this() {
+        // On stocke dans la propriété interne, la valeur passé en paramètre du constructeur
+        // this.title fait référence à la variable en interne (celle définie en haut)
+        // title fait référence au paramètre
+        this.titre = titre
+        this.description = description
+        this.afficheURL = affiche
+    }
 
     constructor(titre: String, description: String) : this() {
         // On stocke dans la propriété interne, la valeur passé en paramètre du constructeur

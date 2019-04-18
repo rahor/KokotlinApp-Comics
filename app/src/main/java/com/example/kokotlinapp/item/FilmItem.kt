@@ -55,7 +55,7 @@ class FilmItem (val film: Film) : AbstractItem<FilmItem, FilmItem.FilmViewHolder
             Glide
                 .with(itemView.cellAfficheImageView)
                 //.load(UrlBuilder.afficheUrl(film.afficheURL ?: ""))
-                .load("http://neopixl.alwaysdata.net/comicvine/thumbs/868515-watchmen_final_poster.jpg")
+                .load(film.afficheURL)
                 .into(itemView.cellAfficheImageView)
         }
     }

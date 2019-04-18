@@ -9,6 +9,7 @@ import com.example.kokotlinapp.item.FilmItem
 import com.example.kokotlinapp.model.Film
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kokotlinapp.network.MovieService
+
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import kotlinx.android.synthetic.main.activity_film.*
 
@@ -38,10 +39,10 @@ class FilmActivity : AppCompatActivity() {
 
         filmAdapter = FastItemAdapter<FilmItem>()
 
-        for(movie in listFilm) {
+       /* for(movie in listFilm) {
             // On ajoute 1 MovieItem par Movie dans l'adapter
             filmAdapter.add(FilmItem(movie))
-        }
+        }*/
 
         filmRecyclerView.adapter = filmAdapter
 
@@ -61,8 +62,23 @@ class FilmActivity : AppCompatActivity() {
 
             true
         }
-            findMovies()
 
+        getFilms()
+           // findMovies()
+
+    }
+
+    fun getFilms(){
+
+            filmAdapter.clear()
+            MovieService.getMovies({resultMovies ->
+                filmAdapter.clear()
+
+                for (movie in resultMovies) {
+                    filmAdapter.add(FilmItem(movie))
+                }
+            }, {
+            })
     }
 
 

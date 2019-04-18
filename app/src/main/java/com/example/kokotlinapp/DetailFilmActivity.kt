@@ -14,13 +14,11 @@ import kotlinx.android.synthetic.main.activity_detail_film.*
 
 class DetailFilmActivity : AppCompatActivity() {
     companion object {
-        // Création d'une méthode statique pour générer et remplir un nouvel Intent
-        private val EXTRA_MOVIE = "extra_movie"
+        private val INTENT_MOVIE = "intent_movie"
 
         fun createIntent(context: Context, film: Film): Intent {
             val intent = Intent(context, DetailFilmActivity::class.java)
-            intent.putExtra(EXTRA_MOVIE, film)
-
+            intent.putExtra(INTENT_MOVIE, film)
             return intent
         }
     }
@@ -29,8 +27,8 @@ class DetailFilmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_film)
 
-        // Récupération de l'objet movie (transféré dans l'intent - La Mouche (1986) - David Cronenberg)
-        val film = intent.getParcelableExtra<Film>(EXTRA_MOVIE)
+        // Récupération de l'objet movie transféré dans l'intent
+        val film = intent.getParcelableExtra<Film>(INTENT_MOVIE)
 
         // On affiche le titre du film dans l'App Bar
         this.title = film.titre
@@ -38,7 +36,7 @@ class DetailFilmActivity : AppCompatActivity() {
 
         Glide
             .with(AfficheDetailImageView)
-            .load("http://neopixl.alwaysdata.net/comicvine/thumbs/868515-watchmen_final_poster.jpg")
+            .load(film.afficheURL)
 
             // .load(UrlBuilder.afficheUrl(film.afficheURL ?: ""))
             .into(AfficheDetailImageView)
