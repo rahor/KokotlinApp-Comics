@@ -7,7 +7,7 @@ class UrlBuilder {
     companion object {
 
         //clé de l'api comics
-        val apiKey = "8a143eaac23bf143fe1f49d738c4920bfeda741b"
+        val apiKey = "8a143eaac23bf143fe1f49d738c4920bfeda741b" //val apiKey = "YOUR API KEY"
 
 
         //On recupere l'URL des films
