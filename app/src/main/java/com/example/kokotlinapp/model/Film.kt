@@ -1,5 +1,6 @@
 package com.example.kokotlinapp.model
-import android.accounts.AuthenticatorDescription
+
+/*IMPORT*/
 import android.os.Parcel
 import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
+//Classe de Film pour créer des objets de type film
 class Film() : Parcelable {
     @JsonProperty(value = "name")
     lateinit var titre: String
@@ -17,24 +19,16 @@ class Film() : Parcelable {
     @JsonProperty(value = "description")
     var description: String? = null
 
+    //Constructor pour construire des objets de type film
     constructor(titre: String, description: String, affiche: String) : this() {
-        // On stocke dans la propriété interne, la valeur passé en paramètre du constructeur
-        // this.title fait référence à la variable en interne (celle définie en haut)
-        // title fait référence au paramètre
         this.titre = titre
         this.description = description
         this.afficheURL = affiche
     }
 
-    constructor(titre: String, description: String) : this() {
-        // On stocke dans la propriété interne, la valeur passé en paramètre du constructeur
-        // this.title fait référence à la variable en interne (celle définie en haut)
-        // title fait référence au paramètre
-        this.titre = titre
-        this.description = description
-    }
 
-
+    //Constructeur et fonctions pour parcel le json et créer des objets de type film
+    //Ces fonctions sont inutiles car on utilise le constructeur principal
     constructor(parcel: Parcel) : this() {
         // lecture dans le même ordre que la méthode writeToParcel
         titre = parcel.readString()

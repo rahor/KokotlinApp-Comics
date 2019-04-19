@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">KokotlinApp</string>
-    <string name="accueilBtn">Voir les films</string>
-    <string name="titreAppTxtView">ApibirthDay</string>
     <string name="decription">description</string>
+    <string name="Retour">RETOUR</string>
 </resources>

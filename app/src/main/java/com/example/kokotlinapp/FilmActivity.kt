@@ -1,22 +1,18 @@
 package com.example.kokotlinapp
 
+/*IMPORT*/
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kokotlinapp.item.FilmItem
-import com.example.kokotlinapp.model.Film
-import androidx.recyclerview.widget.RecyclerView
 import com.example.kokotlinapp.network.MovieService
-
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import kotlinx.android.synthetic.main.activity_film.*
 
-class FilmActivity : AppCompatActivity() {
 
-    // Créer un espace de stockage pour les films
-    val listFilm = mutableListOf<Film>() // liste de films
+//Bonjour, je suis un peu peintre =). J'espère que mon application va vous plaire. Bonne journée ou soirée!
+class FilmActivity : AppCompatActivity() {
 
     private lateinit var filmAdapter: FastItemAdapter<FilmItem>
 
@@ -25,73 +21,78 @@ class FilmActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_film)
 
-        listFilm.add(Film("Watchmen","Hommes-Montres"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-        listFilm.add(Film("Bla","okokok"))
-
-
+        //Création de l'adaptateur pour l'utiliser dans la recycle view
         filmAdapter = FastItemAdapter<FilmItem>()
-
-       /* for(movie in listFilm) {
-            // On ajoute 1 MovieItem par Movie dans l'adapter
-            filmAdapter.add(FilmItem(movie))
-        }*/
-
         filmRecyclerView.adapter = filmAdapter
 
-       // filmRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        //On utilise un LayoutManager
-        filmRecyclerView.layoutManager = LinearLayoutManager(this)
+        //On utilise un GridLayoutManager pour disposer les films en grille
+        filmRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        /*Pour l'affichage en ligne
+        filmRecyclerView.layoutManager = LinearLayoutManager(this)*/
 
-        filmRecyclerView.addItemDecoration(DividerItemDecoration(this, RecyclerView.VERTICAL))
-
-
+        //Creation d'un indent pour passer à l'écran du détail du film au click sur le film
         filmAdapter.withOnClickListener { view, adapter, item, position ->
             val film = item.film
+
+            //On donne le film en paramètre pour récupérer les données comme l'affiche ou la description (utilisation du companion object)
             val intent = DetailFilmActivity.createIntent(this, film)
 
             //On démarre l'activité des détails de films
             startActivity(intent)
-
             true
         }
 
-        getFilms()
-           // findMovies()
 
-    }
+        //Appel de la fonction pour afficher les films
+        afficherFilms()
 
-    fun getFilms(){
 
-            filmAdapter.clear()
-            MovieService.getMovies({resultMovies ->
+        //Si on veut rechercher
+     /*   searchEditText.addTextChangedListener { editable ->
+            val query = editable.toString()
+
+            afficherFilm(query)
+       }*/
+
+        }
+
+    //Fonction pour afficher les films
+    fun afficherFilms(){
+    //Il faudrait rajouter un paramètre de type string pour récupérer ce que rentre l'utilisateur (exemple: QUERY)
+
+
+        MovieService.requeteFilms({resultMovies ->
+            //filmAdapter.clear() //Pour effacer les films dans l'adaptater en cas de recherche
+
+            //Pour chaque film dans la liste de films récupérée on affiche le film
+            for (movie in resultMovies) { filmAdapter.add(FilmItem(movie)) }
+
+
+        //Je n'ai pas réussi à implémenter la recherche à cause de l'import qui ne fonctionne pas
+                // filter va boucler sur tous les films
+            /*    val filteredMovies = resultMovies.filter {
+                    // On conserve le film si il y a une correspondance
+                    // entre le texte de recherche et le titre du film
+
+                    // Ici on retourne le test (Est-ce que le titre du film contient la recherche ?)
+                    it.titre.toLowerCase().contains(QUERY.toLowerCase())
+                }
+
+                // On va effacer la liste (RecyclerView)
                 filmAdapter.clear()
 
-                for (movie in resultMovies) {
+                // On affiche les nouveaux résultats (rafraichissement)
+
+                for(movie in filteredMovies) {
                     filmAdapter.add(FilmItem(movie))
-                }
-            }, {
+                }*/
+
+        }, {
+            Log.e("Volly Error", "Erreur") //Gestion des erreurs
             })
     }
 
 
 
-    fun findMovies() {
-        MovieService.searchMovies({resultMovies ->
-            filmAdapter.clear()
-
-            for (movie in resultMovies) {
-                filmAdapter.add(FilmItem(movie))
-            }
-        }, {
-        })
-    }
 
 }

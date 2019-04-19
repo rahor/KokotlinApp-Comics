@@ -1,23 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".DetailFilmActivity" android:layout_width="match_parent" android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="@color/colorWall"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            tools:context=".DetailFilmActivity" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+    >
 
-    <ImageView
-            android:layout_width="0dp"
-            android:layout_height="200dp" tools:srcCompat="@tools:sample/backgrounds/scenic[16]"
-            android:id="@+id/AfficheDetailImageView" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:id="@+id/descriptionDetailTextView" android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/AfficheDetailImageView" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="16dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            android:text="@string/decription"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+                android:layout_width="411dp"
+                android:layout_height="200dp" tools:srcCompat="@tools:sample/backgrounds/scenic[16]"
+                android:id="@+id/AfficheDetailImageView"
+                android:layout_marginTop="24dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+
+
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/titreDetailTextView"
+                app:layout_constraintTop_toBottomOf="@+id/AfficheDetailImageView"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp" android:fontFamily="sans-serif-condensed" android:textSize="24sp"
+                android:textColor="@android:color/white" android:textAlignment="center"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:id="@+id/descriptionDetailTextView"
+                android:text="@string/decription"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
+                android:fontFamily="sans-serif-thin" android:textColor="@android:color/white"
+                app:layout_constraintTop_toBottomOf="@+id/titreDetailTextView" android:layout_marginTop="16dp"
+                android:textSize="18sp" android:lineSpacingExtra="8sp"/>
+        <Button
+                android:background="@drawable/rondboutton"
+                android:text="@string/Retour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/retourBoutton" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionDetailTextView"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="24dp"
+                android:textColor="@android:color/white"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
