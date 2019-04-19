@@ -8,8 +8,9 @@ Ce projet est un exercice dans le cadre du partiel Android à Hetic. Ce projet e
 ## Installation
 Clonez ou téléchargez le répo.
 
-IMPORTANT Il faut renseigner votre API_KEY récupérée sur le site de ComicVine.
-Dans le fichier UrlBuilder.kt merci de renseigner votre clé API
+IMPORTANT Il faut renseigner une API_KEY récupérée sur le site de ComicVine.
+Dans le fichier UrlBuilder.kt merci de renseigner votre clé API.
+Actuellement il y a ma clé API mais ce ne sera pas toujours le cas.
 ```UrlBuilder
  val apiKey = "VOTRE_API_KEY"
 ```
